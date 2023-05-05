@@ -7,10 +7,12 @@
 <title> Crunchify.com JSP Servlet Example </title>
 </head>
 <body>
+    <jsp:include page="navbar.jsp" />
 <div align='center'>
 Email: <%= request.getParameter("email") %> <br>
 Password: <%= request.getParameter("password") %> <br>
 Role: <%= request.getParameter("role") %> <br>
+
 </div>
 </body>
 </html>
