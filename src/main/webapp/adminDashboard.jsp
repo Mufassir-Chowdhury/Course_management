@@ -8,6 +8,23 @@
 </head>
 <body>
     <jsp:include page="navbar.jsp" />
+    <div class="grid grid-cols-3">
+    	<a href="./AddCourse">
+	    	<div>
+	    		Add Course
+	    	</div>
+    	</a>
+    	<a  href="./ApproveStudent">
+	    	<div>
+	    		Approve Student
+	    	</div>
+    	</a>
+    	<a href="./ApproveInstructor">
+	    	<div>
+	    		Approve Instructor
+	    	</div>
+    	</a>
+    </div>
 <div align='center'>
 Email: <%= request.getParameter("email") %> <br>
 Password: <%= request.getParameter("password") %> <br>

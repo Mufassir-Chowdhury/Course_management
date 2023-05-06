@@ -33,4 +33,28 @@
 <servlet-name>Profile</servlet-name>
 <url-pattern>/profile</url-pattern>
 </servlet-mapping>
+	<servlet>
+		<servlet-name>AddCourse</servlet-name>
+		<servlet-class>cse.web.AddCourseController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddCourse</servlet-name>
+		<url-pattern>/AddCourse</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>ApproveStudent</servlet-name>
+		<servlet-class>cse.web.ApproveStudentController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ApproveStudent</servlet-name>
+		<url-pattern>/ApproveStudent</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>ApproveInstructor</servlet-name>
+		<servlet-class>cse.web.ApproveInstructorController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ApproveInstructor</servlet-name>
+		<url-pattern>/ApproveInstructor</url-pattern>
+	</servlet-mapping>
 </web-app>
