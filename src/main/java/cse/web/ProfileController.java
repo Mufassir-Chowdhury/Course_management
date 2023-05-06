@@ -5,22 +5,21 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class HelloJSP
+ * Servlet implementation class ProfileController
  */
-@WebServlet("/HelloJSP")
-public class HelloJSP extends HttpServlet {
+@WebServlet("/ProfileController")
+public class ProfileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HelloJSP() {
+    public ProfileController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,9 +28,7 @@ public class HelloJSP extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String role = request.getParameter("role");
-		response.addCookie(new Cookie("role", role));
-		RequestDispatcher view = request.getRequestDispatcher("data.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("profilePage.jsp");
 		view.forward(request, response);
 	}
 
