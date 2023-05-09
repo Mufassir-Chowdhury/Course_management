@@ -8,8 +8,8 @@
 </head>
 <body>
     <jsp:include page="navbar.jsp" />
-    <div class="grid grid-cols-3">
-    	<a href="./AddCourse">
+    <div class="flex justify-between">
+    	<a href="./CourseList">
 	    	<div>
 	    		Add Course
 	    	</div>

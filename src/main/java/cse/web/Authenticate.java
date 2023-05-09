@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cse.service.LoginService;
+
 /**
  * Servlet implementation class HelloJSP
  */
-@WebServlet("/Authenticate")
+@WebServlet("/Dashboard")
 public class Authenticate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,8 +31,13 @@ public class Authenticate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String role = request.getParameter("role");
-		response.addCookie(new Cookie("role", role));
+		String role;
+		if(!LoginService.checkLogin(request)) {
+			role = request.getParameter("role");
+			response.addCookie(new Cookie("role", role));
+		} else {
+			role = LoginService.getRole(request);
+		}
 		RequestDispatcher view = request.getRequestDispatcher(role + "Dashboard.jsp");
 		view.forward(request, response);
 		System.out.println(role);
