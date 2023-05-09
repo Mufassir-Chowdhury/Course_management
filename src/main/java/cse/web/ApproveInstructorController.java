@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ApproveInstructorController
  */
-@WebServlet("/ApproveInstructorController")
+@WebServlet("/ApproveInstructor")
 public class ApproveInstructorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
