@@ -13,22 +13,24 @@
 	<jsp:include page="navbar.jsp" />
 	<div class="pt-8 px-16">
 		<div class="px-4 sm:px-0 w-full justify-between flex">
-			<h3 class="text-base font-semibold leading-7 text-gray-900">Course
+			<h3 class="text-base font-semibold leading-7 text-gray-900">Students
 				List</h3>
-			<button>Add course</button>
+			<a href="./StudentApprovalRequests">
+				<button>Approve Students</button>
+			</a>
 		</div>
 		<div class="mt-2 border-t border-gray-100">
 			<ul role="list" class="divide-y divide-gray-100">
 				<li class="flex justify-between gap-x-6 py-5">
 					<div class="flex gap-x-4">
 						<div class="min-w-0 flex-auto">
-							<p class="text-sm font-semibold leading-6 text-gray-900">Computer
-								MEchanichs</p>
-							<p class="mt-1 truncate text-xs leading-5 text-gray-500">CSE-230</p>
+							<p class="text-sm font-semibold leading-6 text-gray-900">Mufassir
+								Ahmad Chowdhury</p>
+							<p class="mt-1 truncate text-xs leading-5 text-gray-500">2019331073</p>
 						</div>
 					</div>
 					<div class="hidden sm:flex sm:flex-col sm:items-end">
-						<p class="text-sm leading-6 text-gray-900">Credit: 3</p>
+						<p class="text-sm leading-6 text-gray-900">mac22214u@gmail.com</p>
 						<p class="mt-1 text-xs leading-5 text-gray-500">Computer
 							Science and Engineering</p>
 					</div>
@@ -36,55 +38,64 @@
 				<li class="flex justify-between gap-x-6 py-5">
 					<div class="flex gap-x-4">
 						<div class="min-w-0 flex-auto">
-							<p class="text-sm font-semibold leading-6 text-gray-900">Introduction
-								to Psychology</p>
-							<p class="mt-1 truncate text-xs leading-5 text-gray-500">PSY-101</p>
+							<p class="text-sm font-semibold leading-6 text-gray-900">John
+								Doe</p>
+							<p class="mt-1 truncate text-xs leading-5 text-gray-500">2019331074</p>
 						</div>
 					</div>
 					<div class="hidden sm:flex sm:flex-col sm:items-end">
-						<p class="text-sm leading-6 text-gray-900">Credit: 3</p>
-						<p class="mt-1 text-xs leading-5 text-gray-500">Psychology</p>
+						<p class="text-sm leading-6 text-gray-900">john.doe@gmail.com</p>
+						<p class="mt-1 text-xs leading-5 text-gray-500">Electrical
+							Engineering</p>
 					</div>
 				</li>
+
 				<li class="flex justify-between gap-x-6 py-5">
 					<div class="flex gap-x-4">
 						<div class="min-w-0 flex-auto">
-							<p class="text-sm font-semibold leading-6 text-gray-900">Calculus
-								I</p>
-							<p class="mt-1 truncate text-xs leading-5 text-gray-500">MATH-121</p>
+							<p class="text-sm font-semibold leading-6 text-gray-900">Jane
+								Smith</p>
+							<p class="mt-1 truncate text-xs leading-5 text-gray-500">2019331075</p>
 						</div>
 					</div>
 					<div class="hidden sm:flex sm:flex-col sm:items-end">
-						<p class="text-sm leading-6 text-gray-900">Credit: 3</p>
-						<p class="mt-1 text-xs leading-5 text-gray-500">Mathematics</p>
+						<p class="text-sm leading-6 text-gray-900">jane.smith@gmail.com</p>
+						<p class="mt-1 text-xs leading-5 text-gray-500">Mechanical
+							Engineering</p>
 					</div>
 				</li>
+
 				<li class="flex justify-between gap-x-6 py-5">
 					<div class="flex gap-x-4">
 						<div class="min-w-0 flex-auto">
-							<p class="text-sm font-semibold leading-6 text-gray-900">Introduction
-								to Sociology</p>
-							<p class="mt-1 truncate text-xs leading-5 text-gray-500">SOC-101</p>
+							<p class="text-sm font-semibold leading-6 text-gray-900">Bob
+								Johnson</p>
+							<p class="mt-1 truncate text-xs leading-5 text-gray-500">2019331076</p>
 						</div>
 					</div>
 					<div class="hidden sm:flex sm:flex-col sm:items-end">
-						<p class="text-sm leading-6 text-gray-900">Credit: 3</p>
-						<p class="mt-1 text-xs leading-5 text-gray-500">Sociology</p>
+						<p class="text-sm leading-6 text-gray-900">bob.johnson@gmail.com</p>
+						<p class="mt-1 text-xs leading-5 text-gray-500">Civil
+							Engineering</p>
 					</div>
 				</li>
+
 				<li class="flex justify-between gap-x-6 py-5">
 					<div class="flex gap-x-4">
 						<div class="min-w-0 flex-auto">
-							<p class="text-sm font-semibold leading-6 text-gray-900">Introduction
-								to Economics</p>
-							<p class="mt-1 truncate text-xs leading-5 text-gray-500">ECON-101</p>
+							<p class="text-sm font-semibold leading-6 text-gray-900">Alice
+								Brown</p>
+							<p class="mt-1 truncate text-xs leading-5 text-gray-500">2019331077</p>
 						</div>
 					</div>
 					<div class="hidden sm:flex sm:flex-col sm:items-end">
-						<p class="text-sm leading-6 text-gray-900">Credit: 3</p>
-						<p class="mt-1 text-xs leading-5 text-gray-500">Economics</p>
+						<p class="text-sm leading-6 text-gray-900">alice.brown@gmail.com</p>
+						<p class="mt-1 text-xs leading-5 text-gray-500">Chemical
+							Engineering</p>
 					</div>
 				</li>
+
+
 			</ul>
 		</div>
 	</div>

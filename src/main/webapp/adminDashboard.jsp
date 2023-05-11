@@ -6,21 +6,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title> Crunchify.com JSP Servlet Example </title>
 </head>
-<body>
+<body class="">
     <jsp:include page="navbar.jsp" />
-    <div class="flex justify-between">
+    <div class="flex justify-around py-8 text-white">
     	<a href="./CourseList">
-	    	<div>
+	    	<div class="w-64 h-32 bg-gradient-to-tr from-gray-800 to-blue-500">
 	    		Add Course
 	    	</div>
     	</a>
-    	<a  href="./ApproveStudent">
-	    	<div>
+    	<a  href="./StudentList">
+	    	<div class="w-64 h-32 bg-gradient-to-tr from-gray-800 to-blue-500">
 	    		Approve Student
 	    	</div>
     	</a>
-    	<a href="./ApproveInstructor">
-	    	<div>
+    	<a href="./TeacherList">
+	    	<div class="w-64 h-32 bg-gradient-to-tr from-gray-800  to-blue-500">
 	    		Approve Instructor
 	    	</div>
     	</a>

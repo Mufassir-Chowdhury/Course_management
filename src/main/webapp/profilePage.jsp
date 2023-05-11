@@ -31,24 +31,28 @@
       	<% 
       	Cookie ck[]=request.getCookies();  
       		if(ck[1].getValue().toString().trim().equals("teacher")){
-			      out.print("<div class=\"px-4 py-2 grid grid-cols-5 gap-4 px-0\">");
-			      out.print("<dt class=\"text-sm font-medium leading-6 text-gray-900\">Code</dt>");
-			      out.print("<dd class=\"text-sm leading-6 text-gray-700 col-span-2 mt-0\">MAC</dd>");
-				  out.print("</div>");
-      			out.print("<div class=\"px-4 py-2 grid grid-cols-5 gap-4 px-0\">");
-				out.print("<dt class=\"text-sm font-medium leading-6 text-gray-900\">Designation</dt>");
-				out.print("<dd class=\"text-sm leading-6 text-gray-700 col-span-2 mt-0\">VC</dd>");
-				out.print("</div>");
+        %>
+			      <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
+			      <dt class="text-sm font-medium leading-6 text-gray-900">Code</dt>
+			      <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">MAC</dd>
+				  </div>
+      			<div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
+				<dt class="text-sm font-medium leading-6 text-gray-900">Designation</dt>
+				<dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">VC</dd>
+				</div>
+        <%
       		} else if(ck[1].getValue().toString().trim().equals("student")){
-      			out.print("<div class=\"px-4 py-2 grid grid-cols-5 gap-4 px-0\">");
-      			out.print("<dt class=\"text-sm font-medium leading-6 text-gray-900\">Session</dt>");
-      			out.print("<dd class=\"text-sm leading-6 text-gray-700 col-span-2 mt-0\">2019</dd>");
-      			out.print("</div>");
+        %>
+      			<div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
+      			<dt class="text-sm font-medium leading-6 text-gray-900">Session</dt>
+      			<dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">2019</dd>
+      			</div>
       			
-      			out.print("<div class=\"px-4 py-2 grid grid-cols-5 gap-4 px-0\">");
-      			out.print("<dt class=\"text-sm font-medium leading-6 text-gray-900\">Current Semester</dt>");
-      			out.print("<dd class=\"text-sm leading-6 text-gray-700 col-span-2 mt-0\">10</dd>");
-      			out.print("</div>");
+      			<div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
+      			<dt class="text-sm font-medium leading-6 text-gray-900">Current Semester</dt>
+      			<dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">10</dd>
+      			</div>
+        <%
       		}
       	%>
       
