@@ -10,18 +10,24 @@
     <jsp:include page="navbar.jsp" />
     <div class="flex justify-around py-8 text-white">
     	<a href="./CourseList">
-	    	<div class="w-64 h-32 bg-gradient-to-tr from-gray-800 to-blue-500">
-	    		Add Course
+	    	<div class="w-64 h-32 bg-gradient-to-tr from-gray-800 to-blue-500 flex place-content-center">
+	    		<button>
+		    		Add Course
+	    		</button>
 	    	</div>
     	</a>
     	<a  href="./StudentList">
-	    	<div class="w-64 h-32 bg-gradient-to-tr from-gray-800 to-blue-500">
-	    		Approve Student
+	    	<div class="w-64 h-32 bg-gradient-to-tr from-gray-800 to-blue-500 flex place-content-center">
+	    		<button>
+		    		Approve Student
+	    		</button>
 	    	</div>
     	</a>
     	<a href="./TeacherList">
-	    	<div class="w-64 h-32 bg-gradient-to-tr from-gray-800  to-blue-500">
-	    		Approve Instructor
+	    	<div class="w-64 h-32 bg-gradient-to-tr from-gray-800 to-blue-500 flex place-content-center">
+	    		<button>
+		    		Approve Instructor
+	    		</button>
 	    	</div>
     	</a>
     </div>

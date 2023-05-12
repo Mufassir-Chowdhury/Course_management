@@ -1,3 +1,5 @@
+<%@page import="java.util.List" %>
+<%@page import="cse.testmodels.Course" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -21,72 +23,27 @@
 		</div>
 		<div class="mt-2 border-t border-gray-100">
 			<ul role="list" class="divide-y divide-gray-100">
-				<li class="flex justify-between gap-x-6 py-5">
-					<div class="flex gap-x-4">
-						<div class="min-w-0 flex-auto">
-							<p class="text-sm font-semibold leading-6 text-gray-900">Computer
-								MEchanichs</p>
-							<p class="mt-1 truncate text-xs leading-5 text-gray-500">CSE-230</p>
+			<% 
+				List<Course> courseList = (List<Course>) request.getAttribute("courseList");
+				for(Course course: courseList){
+					
+			%>
+					<li class="flex justify-between gap-x-6 py-5">
+						<div class="flex gap-x-4">
+							<div class="min-w-0 flex-auto">
+								<p class="text-sm font-semibold leading-6 text-gray-900"><% out.print(course.getName()); %></p>
+								<p class="mt-1 truncate text-xs leading-5 text-gray-500"><% out.print(course.getCode()); %></p>
+							</div>
 						</div>
-					</div>
-					<div class="hidden sm:flex sm:flex-col sm:items-end">
-						<p class="text-sm leading-6 text-gray-900">Credit: 3</p>
-						<p class="mt-1 text-xs leading-5 text-gray-500">Computer
-							Science and Engineering</p>
-					</div>
-				</li>
-				<li class="flex justify-between gap-x-6 py-5">
-					<div class="flex gap-x-4">
-						<div class="min-w-0 flex-auto">
-							<p class="text-sm font-semibold leading-6 text-gray-900">Introduction
-								to Psychology</p>
-							<p class="mt-1 truncate text-xs leading-5 text-gray-500">PSY-101</p>
+						<div class="hidden sm:flex sm:flex-col sm:items-end">
+							<p class="text-sm leading-6 text-gray-900"><% out.print(course.getCredit()); %></p>
+							<p class="mt-1 text-xs leading-5 text-gray-500"><% out.print(course.getDepartment()); %></p>
 						</div>
-					</div>
-					<div class="hidden sm:flex sm:flex-col sm:items-end">
-						<p class="text-sm leading-6 text-gray-900">Credit: 3</p>
-						<p class="mt-1 text-xs leading-5 text-gray-500">Psychology</p>
-					</div>
-				</li>
-				<li class="flex justify-between gap-x-6 py-5">
-					<div class="flex gap-x-4">
-						<div class="min-w-0 flex-auto">
-							<p class="text-sm font-semibold leading-6 text-gray-900">Calculus
-								I</p>
-							<p class="mt-1 truncate text-xs leading-5 text-gray-500">MATH-121</p>
-						</div>
-					</div>
-					<div class="hidden sm:flex sm:flex-col sm:items-end">
-						<p class="text-sm leading-6 text-gray-900">Credit: 3</p>
-						<p class="mt-1 text-xs leading-5 text-gray-500">Mathematics</p>
-					</div>
-				</li>
-				<li class="flex justify-between gap-x-6 py-5">
-					<div class="flex gap-x-4">
-						<div class="min-w-0 flex-auto">
-							<p class="text-sm font-semibold leading-6 text-gray-900">Introduction
-								to Sociology</p>
-							<p class="mt-1 truncate text-xs leading-5 text-gray-500">SOC-101</p>
-						</div>
-					</div>
-					<div class="hidden sm:flex sm:flex-col sm:items-end">
-						<p class="text-sm leading-6 text-gray-900">Credit: 3</p>
-						<p class="mt-1 text-xs leading-5 text-gray-500">Sociology</p>
-					</div>
-				</li>
-				<li class="flex justify-between gap-x-6 py-5">
-					<div class="flex gap-x-4">
-						<div class="min-w-0 flex-auto">
-							<p class="text-sm font-semibold leading-6 text-gray-900">Introduction
-								to Economics</p>
-							<p class="mt-1 truncate text-xs leading-5 text-gray-500">ECON-101</p>
-						</div>
-					</div>
-					<div class="hidden sm:flex sm:flex-col sm:items-end">
-						<p class="text-sm leading-6 text-gray-900">Credit: 3</p>
-						<p class="mt-1 text-xs leading-5 text-gray-500">Economics</p>
-					</div>
-				</li>
+					</li>
+			<%
+				}
+			%>
+				
 			</ul>
 		</div>
 	</div>
