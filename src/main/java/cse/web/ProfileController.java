@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cse.testdao.PersonDao;
+import cse.testmodels.Person;
+
 /**
  * Servlet implementation class ProfileController
  */
@@ -28,6 +31,9 @@ public class ProfileController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PersonDao dao = new PersonDao();
+		Person person = dao.getPerson();
+		request.setAttribute("person", person);
 		RequestDispatcher view = request.getRequestDispatcher("profilePage.jsp");
 		view.forward(request, response);
 	}

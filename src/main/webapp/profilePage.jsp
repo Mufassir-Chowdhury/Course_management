@@ -1,3 +1,4 @@
+<%@ page import="cse.testmodels.Person" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -15,42 +16,52 @@
     <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details.</p>
   </div>
   <div class="mt-2 border-t border-gray-100">
+  	<%       	
+  		Person person = (Person) request.getAttribute("person");
+	 %>
     <dl class="divide-y divide-gray-100">
       <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">ID</dt>
-        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">2019331073</dd>
+        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getId()); %></dd>
       </div>
       <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Name</dt>
-        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">Mufassir Ahmad Chowdhury</dd>
+        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getName()); %></dd>
       </div>
       <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Department</dt>
-        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">SUST</dd>
+        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getDepartment()); %></dd>
       </div>
       	<% 
-      	Cookie ck[]=request.getCookies();  
-      		if(ck[1].getValue().toString().trim().equals("teacher")){
+      		if(person.getCode() != null){
         %>
-			      <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
+		      <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
 			      <dt class="text-sm font-medium leading-6 text-gray-900">Code</dt>
-			      <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">MAC</dd>
-				  </div>
-      			<div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
-				<dt class="text-sm font-medium leading-6 text-gray-900">Designation</dt>
-				<dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">VC</dd>
+			      <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getCode()); %></dd>
+			  </div>
+		<%
+      		} 
+      		if(person.getDesignation() != null){
+		%>
+   				<div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
+					<dt class="text-sm font-medium leading-6 text-gray-900">Designation</dt>
+					<dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getDesignation()); %></dd>
 				</div>
         <%
-      		} else if(ck[1].getValue().toString().trim().equals("student")){
+      		} 
+      		if(person.getSession() != null){
         %>
       			<div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
-      			<dt class="text-sm font-medium leading-6 text-gray-900">Session</dt>
-      			<dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">2019</dd>
+	      			<dt class="text-sm font-medium leading-6 text-gray-900">Session</dt>
+	      			<dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getSession()); %></dd>
       			</div>
-      			
+      	<%
+      		}
+      		if(person.getCurrentSemester() != null){
+      	%>
       			<div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
-      			<dt class="text-sm font-medium leading-6 text-gray-900">Current Semester</dt>
-      			<dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">10</dd>
+	      			<dt class="text-sm font-medium leading-6 text-gray-900">Current Semester</dt>
+	      			<dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getCurrentSemester()); %></dd>
       			</div>
         <%
       		}
@@ -58,11 +69,11 @@
       
       <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
-        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">mac22214u@gmail.com</dd>
+        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getEmail()); %></dd>
       </div>
       <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Phone Number</dt>
-        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0">01771144308</dd>
+        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getPhone()); %></dd>
       </div>
       
     </dl>
