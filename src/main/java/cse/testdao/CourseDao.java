@@ -3,6 +3,7 @@ package cse.testdao;
 import java.util.ArrayList;
 import java.util.List;
 
+import cse.testmodels.Course;
 import cse.testmodels.ListTile;
 
 public class CourseDao {
@@ -21,4 +22,9 @@ public class CourseDao {
 		return courseList;
 		
 	}
+	
+	public Course getCourseDetails() {
+		return new Course("Algorithms", "CSE-221", "Computer Science and Engineering", 3);
+	}
+	
 }

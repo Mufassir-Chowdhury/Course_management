@@ -19,14 +19,7 @@ import cse.testmodels.ListTile;
 @WebServlet("/StudentApprovalRequests")
 public class StudentApprovalRequests extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public StudentApprovalRequests() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,17 +32,10 @@ public class StudentApprovalRequests extends HttpServlet {
 		request.setAttribute("title", "Student Approval List");
 		request.setAttribute("button-text", "");
 		request.setAttribute("button-link", "");
+		request.setAttribute("onClick", "./StudentRequest");
 
 		RequestDispatcher view = request.getRequestDispatcher("listPage.jsp");
 		view.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

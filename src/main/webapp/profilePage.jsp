@@ -8,7 +8,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script></head>
 <title>Insert title here</title>
 </head>
-<body>
+<body class="bg-gray-100">
     <jsp:include page="navbar.jsp" />
 <div class="pt-8 px-16">
   <div class="px-4 sm:px-0">

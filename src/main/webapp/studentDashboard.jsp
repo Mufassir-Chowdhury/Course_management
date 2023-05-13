@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title> Crunchify.com JSP Servlet Example </title>
 </head>
-<body>
+<body class="bg-gray-100">
     <jsp:include page="navbar.jsp" /> 
 <div align='center'>
 Email: <%= request.getParameter("email") %> <br>

@@ -1,6 +1,7 @@
 package cse.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cse.service.LoginService;
+import cse.testdao.CourseDao;
+import cse.testmodels.ListTile;
 
 /**
  * Servlet implementation class HelloJSP
@@ -38,6 +41,13 @@ public class Authenticate extends HttpServlet {
 		} else {
 			role = LoginService.getRole(request);
 		}
+		if(role.toString().trim().equals("teacher")) {
+			CourseDao dao = new CourseDao();
+			List<ListTile> courseList = dao.getCourse();
+			request.setAttribute("list", courseList);
+			request.setAttribute("request", false);
+		}
+			
 		RequestDispatcher view = request.getRequestDispatcher(role + "Dashboard.jsp");
 		view.forward(request, response);
 		System.out.println(role);
