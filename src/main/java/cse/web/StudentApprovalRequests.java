@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cse.testdao.PersonDao;
-import cse.testmodels.Person;
+import cse.testmodels.ListTile;
 
 /**
  * Servlet implementation class StudentApprovalRequests
@@ -33,9 +33,14 @@ public class StudentApprovalRequests extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PersonDao dao = new PersonDao();
-		List<Person> personList = dao.getStudents(); 
-		request.setAttribute("personList", personList);
-		RequestDispatcher view = request.getRequestDispatcher("studentRequestList.jsp");
+		List<ListTile> personList = dao.getStudents(); 
+		request.setAttribute("list", personList);
+		request.setAttribute("request", true);
+		request.setAttribute("title", "Student Approval List");
+		request.setAttribute("button-text", "");
+		request.setAttribute("button-link", "");
+
+		RequestDispatcher view = request.getRequestDispatcher("listPage.jsp");
 		view.forward(request, response);
 	}
 

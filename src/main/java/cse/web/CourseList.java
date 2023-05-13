@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cse.testdao.CourseDao;
-import cse.testmodels.Course;
+import cse.testmodels.ListTile;
 
 /**
  * Servlet implementation class AddCourseController
@@ -33,9 +33,14 @@ public class CourseList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CourseDao dao = new CourseDao();
-		List<Course> courseList = dao.getCourse();
-		request.setAttribute("courseList", courseList);
-		RequestDispatcher view = request.getRequestDispatcher("courseList.jsp");
+		List<ListTile> courseList = dao.getCourse();
+		request.setAttribute("list", courseList);
+		request.setAttribute("request", false);
+		request.setAttribute("title", "Course List");
+		request.setAttribute("button-text", "Add Course");
+		request.setAttribute("button-link", "./AddCourseForm");
+
+		RequestDispatcher view = request.getRequestDispatcher("listPage.jsp");
 		view.forward(request, response);
 	}
 

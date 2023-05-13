@@ -1,21 +1,22 @@
 package cse.testdao;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import cse.testmodels.Course;
+import cse.testmodels.ListTile;
 
 public class CourseDao {
-	public List<Course> getCourse() {
-		List<Course> courseList = new ArrayList<Course>();
-		courseList.add(new Course("Computer Mechanics", "CSE-230", "Computer Science and Engineering", 3));
+	public List<ListTile> getCourse() {
+		List<ListTile> courseList = new ArrayList<ListTile>();
+		courseList.add(new ListTile("Computer Mechanics", "CSE-230", "Computer Science and Engineering", "Credits - 3", "CSE-230"));
 
-		courseList.add(new Course("Introduction to Psychology", "PSY-101", "Psychology", 3));
+		courseList.add(new ListTile("Introduction to Psychology", "PSY-101", "Psychology", "Credits - 3", "PSY-101"));
 
-		courseList.add(new Course("Calculus I", "MATH-121", "Mathematics", 3));
+		courseList.add(new ListTile("Calculus I", "MATH-121", "Mathematics", "Credits - 3", "MATH-121"));
 
-		courseList.add(new Course("Introduction to Sociology", "SOC-101", "Sociology", 3));
+		courseList.add(new ListTile("Introduction to Sociology", "SOC-101", "Sociology", "Credits - 3", "SOC-101"));
 
-		courseList.add(new Course("Introduction to Economics", "ECON-101", "Economics", 3));
+		courseList.add(new ListTile("Introduction to Economics", "ECON-101", "Economics", "Credits - 3", "ECON-101"));
 
 		return courseList;
 		
