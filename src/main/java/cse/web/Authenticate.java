@@ -46,11 +46,26 @@ public class Authenticate extends HttpServlet {
 			List<ListTile> courseList = dao.getCourse();
 			request.setAttribute("list", courseList);
 			request.setAttribute("request", false);
+			request.setAttribute("onClick", "./Course");
+			RequestDispatcher view = request.getRequestDispatcher(role + "Dashboard.jsp");
+			view.forward(request, response);
+		} else if(role.toString().trim().equals("student")) {
+			CourseDao dao = new CourseDao();
+			List<ListTile> courseList = dao.getCourse();
+			request.setAttribute("list", courseList);
+			request.setAttribute("request", false);
+			request.setAttribute("title", "Registered Course List");
+			request.setAttribute("button-text", "Register Course");
+			request.setAttribute("button-link", "./RegisterCourseForm");
+			request.setAttribute("onClick", "./Course");
+
+
+			RequestDispatcher view = request.getRequestDispatcher("listPage.jsp");
+			view.forward(request, response);
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher(role + "Dashboard.jsp");
+			view.forward(request, response);
 		}
-			
-		RequestDispatcher view = request.getRequestDispatcher(role + "Dashboard.jsp");
-		view.forward(request, response);
-		System.out.println(role);
 
 	}
 
