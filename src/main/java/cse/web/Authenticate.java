@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cse.dao.StudentDao;
+import cse.model.StudentModel;
 import cse.service.LoginService;
 import cse.testdao.CourseDao;
 import cse.testmodels.ListTile;
@@ -50,6 +52,13 @@ public class Authenticate extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher(role + "Dashboard.jsp");
 			view.forward(request, response);
 		} else if(role.toString().trim().equals("student")) {
+			
+			String email = (String) request.getParameter("email");
+			//System.out.println(email);
+			StudentDao std_dao = new StudentDao();
+			StudentModel std = std_dao.getStudent(email);
+			request.setAttribute("std", std);
+			
 			CourseDao dao = new CourseDao();
 			List<ListTile> courseList = dao.getCourse();
 			request.setAttribute("list", courseList);
@@ -60,7 +69,7 @@ public class Authenticate extends HttpServlet {
 			request.setAttribute("onClick", "./Course");
 
 
-			RequestDispatcher view = request.getRequestDispatcher("listPage.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("studentDashboard.jsp");
 			view.forward(request, response);
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher(role + "Dashboard.jsp");
