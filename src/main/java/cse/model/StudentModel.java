@@ -6,8 +6,8 @@ public class StudentModel {
 	private String name;
 	private String dept;
 	private String session;
+	private String phone;
 	private String email;
-	private String password;
 	
 	public String getId() {
 		return id;
@@ -39,24 +39,26 @@ public class StudentModel {
 	public void setSession(String session) {
 		this.session = session;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
 	@Override
 	public String toString() {
-		return "student [id=" + id + ", username=" + username + ", name=" + name + ", dept=" + dept + ", session="
-				+ session + ", email=" + email + ", password=" + password + "]";
+		return "StudentModel [id=" + id + ", username=" + username + ", name=" + name + ", dept=" + dept + ", session="
+				+ session + ", phone=" + phone + ", email=" + email + "]";
 	}
+	
+	
+	
 	
 	
 }

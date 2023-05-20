@@ -5,38 +5,35 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import cse.model.StudentModel;
+import cse.model.AdminModel;
 
-public class StudentDao {
-	public StudentModel getStudent(String email) {
+
+public class AdminDao {
+	public AdminModel getAdmin(String email) {
 		String url = "jdbc:mysql://localhost:3306/course_management";
 		String user = "root";
 		String pw = "tasintasin";
-		String sql = "select * from students where email = ?";
+		String sql = "select * from admins where email = ?";
 		
-		StudentModel std = new StudentModel();
+		AdminModel adm = new AdminModel();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection(url, user, pw);
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, email);
 			ResultSet rs = pst.executeQuery();
-			
+					
 			if(rs.next()) {
-				std.setId(rs.getString("id"));
-				std.setUsername(rs.getString("username"));
-				std.setName(rs.getString("name"));
-				std.setDept(rs.getString("dept"));
-				std.setSession(rs.getString("session"));
-				std.setPhone(rs.getString("phone"));
-				std.setEmail(rs.getString("email"));
+				adm.setId(rs.getInt("id"));
+				adm.setUsername(rs.getString("username"));
+				adm.setName(rs.getString("name"));
+				adm.setEmail(rs.getString("email"));
 			}
 			
 		}catch(Exception e) {
 			System.out.println(e);
 		}
-
-		return std;
+		
+		return adm;
 	}
-	
 }

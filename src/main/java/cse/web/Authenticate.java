@@ -54,7 +54,7 @@ public class Authenticate extends HttpServlet {
 		} else if(role.toString().trim().equals("student")) {
 			
 //			String email = (String) request.getParameter("email");
-			//System.out.println(email);
+//			System.out.println(email);
 //			StudentDao std_dao = new StudentDao();
 //			StudentModel std = std_dao.getStudent(email);
 //			request.setAttribute("std", std);
