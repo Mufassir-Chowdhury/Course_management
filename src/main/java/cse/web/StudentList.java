@@ -33,7 +33,6 @@ public class StudentList extends HttpServlet {
 		request.setAttribute("button-link", "./StudentApprovalRequests");
 		request.setAttribute("onClick", "./Student");
 
-
 		RequestDispatcher view = request.getRequestDispatcher("listPage.jsp");
 		view.forward(request, response);
 	}

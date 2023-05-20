@@ -16,7 +16,7 @@
 </head>
 <title><% out.print(title); %></title>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 flex flex-col justify-between h-screen">
 	<jsp:include page="navbar.jsp" />
 	<div class="pt-8 px-16">
 		<div class="px-4 sm:px-0 w-full justify-between flex">
@@ -28,6 +28,7 @@
 		<jsp:include page="listShow.jsp" />
 
 	</div>
+	    <jsp:include page="footer.jsp" />
 
 </body>
 </html>

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title> Crunchify.com JSP Servlet Example </title>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 flex flex-col justify-between h-screen">
 	<% 
 		Course course = (Course) request.getAttribute("course");
 	%>
@@ -28,6 +28,7 @@
 
 		<jsp:include page="listShow.jsp" />
 	</div>
+		    <jsp:include page="footer.jsp" />
 	
 </body>
 </html>

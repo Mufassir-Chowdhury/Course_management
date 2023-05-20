@@ -9,10 +9,10 @@
 </head>
 <title>Insert title here</title>
 </head>
-<body>
+<body class="flex flex-col justify-between h-screen">
 	<jsp:include page="navbar.jsp" />
 	<div class="pt-8 px-16">
-		<div class="mt-2 border-t border-gray-100 flex place-content-center">
+		<div class="mt-2 flex place-content-center">
 			<form class="w-2/3">
 				<div class="space-y-12">
 					
@@ -138,6 +138,7 @@
 
 		</div>
 	</div>
+	    <jsp:include page="footer.jsp" />
 
 </body>
 </html>

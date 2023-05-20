@@ -8,7 +8,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script></head>
 <title>Insert title here</title>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 flex flex-col justify-between h-screen">
     <jsp:include page="navbar.jsp" />
 <div class="pt-8 px-16">
   <div class="px-4 sm:px-0">
@@ -79,6 +79,7 @@
     </dl>
   </div>
 </div>
+	    <jsp:include page="footer.jsp" />
 
 </body>
 </html>

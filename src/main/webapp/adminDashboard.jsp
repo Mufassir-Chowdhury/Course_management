@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title> Crunchify.com JSP Servlet Example </title>
 </head>
-<body class="">
+<body class="flex flex-col justify-between h-screen">
     <jsp:include page="navbar.jsp" />
     <div class="flex justify-around py-8 text-white">
     	<a href="./CourseList">
@@ -37,5 +37,7 @@ Password: <%= request.getParameter("password") %> <br>
 Role: <%= request.getParameter("role") %> <br>
 Admin Page
 </div>
+	    <jsp:include page="footer.jsp" />
+	
 </body>
 </html>

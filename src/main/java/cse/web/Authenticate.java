@@ -53,11 +53,11 @@ public class Authenticate extends HttpServlet {
 			view.forward(request, response);
 		} else if(role.toString().trim().equals("student")) {
 			
-			String email = (String) request.getParameter("email");
+//			String email = (String) request.getParameter("email");
 			//System.out.println(email);
-			StudentDao std_dao = new StudentDao();
-			StudentModel std = std_dao.getStudent(email);
-			request.setAttribute("std", std);
+//			StudentDao std_dao = new StudentDao();
+//			StudentModel std = std_dao.getStudent(email);
+//			request.setAttribute("std", std);
 			
 			CourseDao dao = new CourseDao();
 			List<ListTile> courseList = dao.getCourse();
@@ -68,8 +68,9 @@ public class Authenticate extends HttpServlet {
 			request.setAttribute("button-link", "./RegisterCourseForm");
 			request.setAttribute("onClick", "./Course");
 
+			RequestDispatcher view = request.getRequestDispatcher("listPage.jsp");
 
-			RequestDispatcher view = request.getRequestDispatcher("studentDashboard.jsp");
+//			RequestDispatcher view = request.getRequestDispatcher("studentDashboard.jsp");
 			view.forward(request, response);
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher(role + "Dashboard.jsp");
