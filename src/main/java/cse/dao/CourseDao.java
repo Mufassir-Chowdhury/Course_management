@@ -4,40 +4,110 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import cse.model.CourseModel;
+import cse.model.StudentModel;
 
 
 
 public class CourseDao {
-	public CourseModel getCourse(String course_code) {
+	private Connection con;
+	
+	public CourseDao() {
 		String url = "jdbc:mysql://localhost:3306/course_management";
 		String user = "root";
 		String pw = "tasintasin";
-		String sql = "select * from courses where course_code = ?";
 		
-		CourseModel crs = new CourseModel();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection(url, user, pw);
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	
+	public CourseModel getCourse(String course_code) {
+			CourseModel crs = new CourseModel();
+			String sql = "select * from courses where course_code = ?";
+			
+			try {
+				PreparedStatement pst = con.prepareStatement(sql);
+				pst.setString(1, course_code);
+				ResultSet rs = pst.executeQuery();
+				
+				if(rs.next()) {
+					crs.setCourse_code(rs.getString("course_code"));
+					crs.setCourse_name(rs.getString("course_name"));
+					crs.setCredit(rs.getString("credit"));
+					crs.setInstructor(rs.getString("instructor"));
+					crs.setPrereq(rs.getString("prereq"));
+					crs.setSemester(rs.getString("semester"));
+					crs.setYear(rs.getString("year"));
+				}
+			}catch(Exception e) {
+				System.out.println(e);
+			}
+			return crs;	
+	}
+	
+	
+	public List<CourseModel> getAllCourse() {
+		String sql = "select * from courses";
+		List<CourseModel> courses = new ArrayList<>();
+		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, course_code);
 			ResultSet rs = pst.executeQuery();
 			
 			if(rs.next()) {
-				crs.setCourse_code(rs.getString("course_code"));
-				crs.setCourse_name(rs.getString("course_name"));
-				crs.setCredit(rs.getString("credit"));
-				crs.setInstructor(rs.getString("instructor"));
-				crs.setPrereq(rs.getString("prereq"));
-				crs.setSemester(rs.getString("semester"));
-				crs.setYear(rs.getString("year"));
+				CourseModel crs = new CourseModel();
+				crs .setCourse_code(rs.getString("course_code"));
+				crs .setCourse_name(rs.getString("course_name"));
+				crs .setCredit(rs.getString("credit"));
+				crs .setInstructor(rs.getString("instructor"));
+				crs .setPrereq(rs.getString("prereq"));
+				crs .setSemester(rs.getString("semester"));
+				crs .setYear(rs.getString("year"));
+				courses.add(crs);
 			}
 			
 		}catch(Exception e) {
 			System.out.println(e);
 		}
-		
-		return crs;
+		return courses;
 	}
+	
+	public List<StudentModel> getAllStudentOfCourse() {
+		String sql = "select *\n"
+				+ "    from students as s, takes as tk\n"
+				+ "    where s.id=tk.id and tk.course_code = \"?\"";
+		
+		List<StudentModel> students = new ArrayList<>();
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				StudentModel std = new StudentModel();
+				std.setId(rs.getString("id"));
+				std.setUsername(rs.getString("username"));
+				std.setName(rs.getString("name"));
+				std.setDept(rs.getString("dept"));
+				std.setSession(rs.getString("session"));
+				std.setPhone(rs.getString("phone"));
+				std.setEmail(rs.getString("email"));
+				String temp = rs.getString("id");
+				String temp1 = rs.getString("course_code");
+				students.add(std);
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return students;
+	}
+	
 }
