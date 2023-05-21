@@ -17,11 +17,11 @@ public class TeacherDao {
 	public TeacherDao() {
 		String url = "jdbc:mysql://localhost:3306/course_management";
 		String user = "root";
-		String pw = "tasintasin";
+		String pw = "root";
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection(url, user, pw);
+			con = DriverManager.getConnection(url, user, pw);
 		}catch(Exception e) {
 			System.out.println(e);
 		}

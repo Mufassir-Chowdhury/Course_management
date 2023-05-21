@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cse.dao.StudentDao;
 import cse.testdao.PersonDao;
 import cse.testmodels.ListTile;
 
@@ -24,8 +25,8 @@ public class StudentList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PersonDao dao = new PersonDao();
-		List<ListTile> personList = dao.getStudents(); 
+		StudentDao dao = new StudentDao();
+		List<ListTile> personList = dao.getAllStudent(); 
 		request.setAttribute("list", personList);
 		request.setAttribute("request", false);
 		request.setAttribute("title", "Student List");
