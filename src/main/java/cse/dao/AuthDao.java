@@ -12,7 +12,7 @@ public class AuthDao {
 	public AuthModel getAuth(String email) {
 		String url = "jdbc:mysql://localhost:3306/course_management";
 		String user = "root";
-		String pw = "tasintasin";
+		String pw = "root";
 		String sql = "select * from auths where email = ?";
 		
 		AuthModel auth = new AuthModel();

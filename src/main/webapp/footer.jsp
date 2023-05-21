@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<footer class="px-3 py-4 bg-gray-800 text-2 text-gray-200 transition-colors duration-200">
+<footer class="px-3 py-4 bg-gradient-to-tr from-gray-500 to-gray-800 text-2 text-gray-200 transition-colors duration-200">
     <div class="flex flex-col">
         <div class="md:hidden mt-7 mx-auto w-11 h-px rounded-full">
         </div>

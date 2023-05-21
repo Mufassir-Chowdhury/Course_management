@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="cse.model.StudentModel" %>
+<%@ page import="cse.dao.StudentDao" %>
 
 <!DOCTYPE html>
 <html>
@@ -18,6 +19,10 @@
 
 	</div>
 <div align='center'>
+<%
+	StudentModel model = (StudentModel) request.getAttribute("std");
+	out.print(model.getName());
+%>
 Email: <%= request.getParameter("email") %> <br>
 Password: <%= request.getParameter("password") %> <br>
 Role: <%= request.getParameter("role") %> <br>
