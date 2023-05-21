@@ -4,10 +4,10 @@ public class CourseModel {
 	private String course_code;
 	private String course_name;
 	private String credit;
-	private String instructor;
+	private int instructor_id;
 	private String prereq;
-	private String semester;
-	private String year;
+	private int semester;
+	private int year;
 	public String getCourse_code() {
 		return course_code;
 	}
@@ -26,11 +26,11 @@ public class CourseModel {
 	public void setCredit(String credit) {
 		this.credit = credit;
 	}
-	public String getInstructor() {
-		return instructor;
+	public int getInstructor_id() {
+		return instructor_id;
 	}
-	public void setInstructor(String instructor) {
-		this.instructor = instructor;
+	public void setInstructor_id(int instructor_id) {
+		this.instructor_id = instructor_id;
 	}
 	public String getPrereq() {
 		return prereq;
@@ -38,22 +38,22 @@ public class CourseModel {
 	public void setPrereq(String prereq) {
 		this.prereq = prereq;
 	}
-	public String getSemester() {
+	public int getSemester() {
 		return semester;
 	}
-	public void setSemester(String semester) {
+	public void setSemester(int semester) {
 		this.semester = semester;
 	}
-	public String getYear() {
+	public int getYear() {
 		return year;
 	}
-	public void setYear(String year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 	@Override
 	public String toString() {
 		return "course [course_code=" + course_code + ", course_name=" + course_name + ", credit=" + credit
-				+ ", instructor=" + instructor + ", prereq=" + prereq + ", semester=" + semester + ", year=" + year
+				+ ", instructor_id=" + instructor_id + ", prereq=" + prereq + ", semester=" + semester + ", year=" + year
 				+ "]";
 	}
 	

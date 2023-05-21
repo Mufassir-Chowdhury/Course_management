@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,10 +41,10 @@ public class CourseDao {
 					crs.setCourse_code(rs.getString("course_code"));
 					crs.setCourse_name(rs.getString("course_name"));
 					crs.setCredit(rs.getString("credit"));
-					crs.setInstructor(rs.getString("instructor"));
+					crs.setInstructor_id(rs.getInt("instructor_id"));
 					crs.setPrereq(rs.getString("prereq"));
-					crs.setSemester(rs.getString("semester"));
-					crs.setYear(rs.getString("year"));
+					crs.setSemester(rs.getInt("semester"));
+					crs.setYear(rs.getInt("year"));
 				}
 			}catch(Exception e) {
 				System.out.println(e);
@@ -66,10 +65,10 @@ public class CourseDao {
 				crs.setCourse_code(rs.getString("course_code"));
 				crs.setCourse_name(rs.getString("course_name"));
 				crs.setCredit(rs.getString("credit"));
-				crs.setInstructor(rs.getString("instructor"));
+				crs.setInstructor_id(rs.getInt("instructor"));
 				crs.setPrereq(rs.getString("prereq"));
-				crs.setSemester(rs.getString("semester"));
-				crs.setYear(rs.getString("year"));
+				crs.setSemester(rs.getInt("semester"));
+				crs.setYear(rs.getInt("year"));
 				courses.add(crs);
 			}
 			
@@ -122,10 +121,10 @@ public class CourseDao {
 				crs.setCourse_code(rs.getString("course_code"));
 				crs.setCourse_name(rs.getString("course_name"));
 				crs.setCredit(rs.getString("credit"));
-				crs.setInstructor(rs.getString("instructor"));
+				crs.setInstructor_id(rs.getInt("instructor_id"));
 				crs.setPrereq(rs.getString("prereq"));
-				crs.setSemester(rs.getString("semester"));
-				crs.setYear(rs.getString("year"));
+				crs.setSemester(rs.getInt("semester"));
+				crs.setYear(rs.getInt("year"));
 //				String temp = rs.getString("id");
 //				String temp = rs.getString("course_code");
 				courses.add(crs);
@@ -150,10 +149,10 @@ public class CourseDao {
 				crs.setCourse_code(rs.getString("course_code"));
 				crs.setCourse_name(rs.getString("course_name"));
 				crs.setCredit(rs.getString("credit"));
-				crs.setInstructor(rs.getString("instructor"));
+				crs.setInstructor_id(rs.getInt("instructor_id"));
 				crs.setPrereq(rs.getString("prereq"));
-				crs.setSemester(rs.getString("semester"));
-				crs.setYear(rs.getString("year"));
+				crs.setSemester(rs.getInt("semester"));
+				crs.setYear(rs.getInt("year"));
 				courses.add(crs);
 			}
 			
@@ -177,16 +176,58 @@ public class CourseDao {
 				crs.setCourse_code(rs.getString("course_code"));
 				crs.setCourse_name(rs.getString("course_name"));
 				crs.setCredit(rs.getString("credit"));
-				crs.setInstructor(rs.getString("instructor"));
+				crs.setInstructor_id(rs.getInt("instructor_id"));
 				crs.setPrereq(rs.getString("prereq"));
-				crs.setSemester(rs.getString("semester"));
-				crs.setYear(rs.getString("year"));
+				crs.setSemester(rs.getInt("semester"));
+				crs.setYear(rs.getInt("year"));
 				courses.add(crs);
 			}
+			
 			
 		}catch(Exception e) {
 			System.out.println(e);
 		}
 		return courses;
+	}
+	
+	public void addCourse(CourseModel course){
+		String sql = "insert into courses "
+				   + "(course_code, course_name, credits, instructor_id, prereq, semester, year) values "
+				   + "(?,?,?,?,?,?,?)";
+		String sql2 = "insert into teaches(id, course_code) values (?, ?)";
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, course.getCourse_code());
+			pst.setString(2, course.getCourse_name());
+			pst.setString(3, course.getCredit());
+			pst.setInt(4, course.getInstructor_id());
+			pst.setString(5, course.getPrereq());
+			pst.setInt(6, course.getSemester());
+			pst.setInt(7, course.getYear());
+			pst.execute();
+			
+			PreparedStatement pst2 = con.prepareStatement(sql2);
+			pst2.setInt(1, course.getInstructor_id());
+			pst2.setString(2, course.getCourse_code());
+			pst2.execute();
+			
+		} catch(Exception e) {
+			System.out.print(e);
+		}
+	}
+	
+	public void regCourse(String student_id, String course_code){
+		String sql = "insert into takes (id, course_code) values (?, ?)";
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, student_id);
+			pst.setString(2, course_code);
+			pst.execute();
+			
+		} catch(Exception e) {
+			System.out.print(e);
+		}
 	}
 }
