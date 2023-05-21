@@ -60,7 +60,7 @@ public class TeacherDao {
 			PreparedStatement pst = con.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				TeacherModel tcr = new TeacherModel();
 				tcr.setId(rs.getInt("id"));
 				tcr.setUsername(rs.getString("username"));

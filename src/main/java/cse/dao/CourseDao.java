@@ -15,7 +15,6 @@ import cse.model.StudentModel;
 
 public class CourseDao {
 	private Connection con;
-	
 	public CourseDao() {
 		String url = "jdbc:mysql://localhost:3306/course_management";
 		String user = "root";
@@ -62,7 +61,7 @@ public class CourseDao {
 			PreparedStatement pst = con.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				CourseModel crs = new CourseModel();
 				crs.setCourse_code(rs.getString("course_code"));
 				crs.setCourse_name(rs.getString("course_name"));
@@ -80,17 +79,16 @@ public class CourseDao {
 		return courses;
 	}
 	
-	public List<StudentModel> getAllStudentOfACourse() {
-		String sql = "select *\n"
-				+ "    from students as s, takes as tk\n"
-				+ "    where s.id=tk.id and tk.course_code = \"?\"";
+	public List<StudentModel> getAllStudentOfACourse(String course_code) {
+		String sql = "select * from students join takes using(id) where takes.course_code = '?'";
 		
 		List<StudentModel> students = new ArrayList<>();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, course_code);
 			ResultSet rs = pst.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				StudentModel std = new StudentModel();
 				std.setId(rs.getString("id"));
 				std.setUsername(rs.getString("username"));
@@ -99,8 +97,8 @@ public class CourseDao {
 				std.setSession(rs.getString("session"));
 				std.setPhone(rs.getString("phone"));
 				std.setEmail(rs.getString("email"));
-				String temp = rs.getString("id");
-				String temp1 = rs.getString("course_code");
+				//String temp = rs.getString("id");
+				//String temp1 = rs.getString("course_code");
 				students.add(std);
 			}
 			
@@ -111,16 +109,15 @@ public class CourseDao {
 	}
 	
 	
-	public List<CourseModel> getAllCourseOfATeacher() {
-		String sql = "select *\r\n"
-				+ "from courses as c, teaches as tc\r\n"
-				+ "where c.instructor_id = tc.id and tc.id = '?';";
+	public List<CourseModel> getAllCourseOfATeacher(int id) {
+		String sql = "select * from courses as c, teaches as tc where c.instructor_id = tc.id and tc.id = '?'";
 		List<CourseModel> courses = new ArrayList<>();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				CourseModel crs = new CourseModel();
 				crs.setCourse_code(rs.getString("course_code"));
 				crs.setCourse_name(rs.getString("course_name"));
@@ -129,8 +126,8 @@ public class CourseDao {
 				crs.setPrereq(rs.getString("prereq"));
 				crs.setSemester(rs.getString("semester"));
 				crs.setYear(rs.getString("year"));
-				String temp = rs.getString("id");
-				String temp = rs.getString("course_code");
+//				String temp = rs.getString("id");
+//				String temp = rs.getString("course_code");
 				courses.add(crs);
 			}
 			
@@ -140,4 +137,56 @@ public class CourseDao {
 		return courses;
 	}
 	
+	public List<CourseModel> getAllCourseOfAStudent(String id) {
+		String sql = "select * from courses join takes using(course_code) join students using (id) where students.id = '?'";
+		List<CourseModel> courses = new ArrayList<>();
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, id);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				CourseModel crs = new CourseModel();
+				crs.setCourse_code(rs.getString("course_code"));
+				crs.setCourse_name(rs.getString("course_name"));
+				crs.setCredit(rs.getString("credit"));
+				crs.setInstructor(rs.getString("instructor"));
+				crs.setPrereq(rs.getString("prereq"));
+				crs.setSemester(rs.getString("semester"));
+				crs.setYear(rs.getString("year"));
+				courses.add(crs);
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return courses;
+	}
+	
+	
+	public List<CourseModel> getAllCoursesNotTakenByAStudent(String id) {
+		String sql = "select * from courses join takes using(course_code) where takes.id != '?'";
+		List<CourseModel> courses = new ArrayList<>();
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, id);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				CourseModel crs = new CourseModel();
+				crs.setCourse_code(rs.getString("course_code"));
+				crs.setCourse_name(rs.getString("course_name"));
+				crs.setCredit(rs.getString("credit"));
+				crs.setInstructor(rs.getString("instructor"));
+				crs.setPrereq(rs.getString("prereq"));
+				crs.setSemester(rs.getString("semester"));
+				crs.setYear(rs.getString("year"));
+				courses.add(crs);
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return courses;
+	}
 }
