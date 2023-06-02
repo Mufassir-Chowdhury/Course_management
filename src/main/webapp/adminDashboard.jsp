@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title> Crunchify.com JSP Servlet Example </title>
+<title>Admin Dashboard</title>
 </head>
 <body class="flex flex-col justify-between h-screen">
 	<div class="flex-none">

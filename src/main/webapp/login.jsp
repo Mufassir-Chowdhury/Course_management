@@ -7,6 +7,7 @@ pageEncoding="ISO-8859-1"%>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script></head>
+  <title>Login</title>
 <body class="h-full bg-gray-50">
     <div class="h-full">
         <div class="flex min-h-full items-center justify-center py-12 px-8">
@@ -29,16 +30,6 @@ pageEncoding="ISO-8859-1"%>
                 </div>
           
                 <div class="flex items-center justify-between">
-                  <!-- 
-                  <div class="flex items-center">
-                    <select name="role" id="role" class="rounded border-gray-300 text-indigo-600">
-                        <option value="student">Student</option>
-                        <option value="teacher">Teacher</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                    <label for="role" class="ml-2 block text-sm text-gray-900">Role</label>
-                  </div>
-                   -->
                    <div>
                    </div>
           

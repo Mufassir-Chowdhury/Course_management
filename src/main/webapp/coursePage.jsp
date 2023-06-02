@@ -1,16 +1,16 @@
 <%@ page import="cse.model.CourseModel" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+	<% 
+		CourseModel course = (CourseModel) request.getAttribute("course");
+	%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title> Crunchify.com JSP Servlet Example </title>
+<title><% out.print(course.getCourse_name()); %></title>
 </head>
 <body class="bg-gray-100 flex flex-col justify-between h-screen">
-	<% 
-		CourseModel course = (CourseModel) request.getAttribute("course");
-	%>
 	<div class="flex-none">
 	    <jsp:include page="navbar.jsp" />
 	</div>

@@ -9,7 +9,7 @@
 	  <script src="https://cdn.tailwindcss.com?plugins=forms"></script></head>
 
 </head>
-<title>Insert title here</title>
+<title>Course Form</title>
 </head>
 <% 
 	List<TeacherModel> teachers = (List<TeacherModel>) request.getAttribute("list");

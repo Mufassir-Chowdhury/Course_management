@@ -7,7 +7,7 @@
 <script
 	src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 </head>
-<title>Insert title here</title>
+<title>Course Registration Form</title>
 </head>
 <body class="flex flex-col justify-between h-screen">
 	<div class="flex-none">

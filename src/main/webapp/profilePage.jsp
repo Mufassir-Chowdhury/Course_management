@@ -1,11 +1,14 @@
 <%@ page import="cse.testmodels.Person" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%       	
+  		Person person = (Person) request.getAttribute("person");
+	 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title><% out.print(person.getName()); %></title>
 </head>
 <body class="bg-gray-100 flex flex-col justify-between h-screen">
 	<div class="flex-none">
@@ -17,9 +20,7 @@
     <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details.</p>
   </div>
   <div class="mt-2 border-t border-gray-100">
-  	<%       	
-  		Person person = (Person) request.getAttribute("person");
-	 %>
+  	
     <dl class="divide-y divide-gray-100">
       <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">ID</dt>
