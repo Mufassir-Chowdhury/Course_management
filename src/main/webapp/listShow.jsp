@@ -7,8 +7,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <!-- TODO remove unnecessary plugins --> 
-<script
-	src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 </head>
 <body>
 	<div class="mt-2 border-t border-gray-100">

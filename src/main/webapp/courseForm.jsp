@@ -1,19 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="cse.model.TeacherModel" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<script
-	src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+	  <script src="https://cdn.tailwindcss.com?plugins=forms"></script></head>
+
 </head>
 <title>Insert title here</title>
 </head>
+<% 
+	List<TeacherModel> teachers = (List<TeacherModel>) request.getAttribute("list");
+%>
 <body class="flex flex-col justify-between h-screen">
-	<jsp:include page="navbar.jsp" />
-	<div class="pt-8 px-16">
+	<div class="flex-none">
+		<jsp:include page="navbar.jsp" />
+	</div>
+	<div class="pt-8 px-16 grow">
 		<div class="mt-2 flex place-content-center">
-			<form class="w-2/3">
+			<form class="w-2/3" action="AddCourseAction" method="post">
 				<div class="space-y-12">
 					
 					<div class="px-4 sm:px-0 w-full justify-between flex">
@@ -28,7 +35,7 @@
 									class="block text-sm font-medium leading-6 text-gray-900">Course
 									name</label>
 								<div class="mt-2">
-									<input type="text" name="course-name" id="course_name"
+									<input type="text" name="course_name" id="course_name"
 										autocomplete="course_name"
 										class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
 								</div>
@@ -70,14 +77,14 @@
 							</div>
 
 							<div class="sm:col-span-7">
-								<label for="country"
+								<label for="id"
 									class="block text-sm font-medium leading-6 text-gray-900">Instructor</label>
 								<div class="mt-2">
-									<select id="country" name="country" autocomplete="country-name"
+									<select id="id" name="id"
 										class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-										<option>Enam sir</option>
-										<option>Sumit sir</option>
-										<option>uglu buglu</option>
+										<% for(TeacherModel teacher: teachers){ %>
+											<option value="<% out.print(teacher.getId()); %>"><% out.print(teacher.getCode()); %></option>
+										<% } %>
 									</select>
 								</div>
 							</div>
@@ -138,7 +145,9 @@
 
 		</div>
 	</div>
+	<div class="flex-none">
 	    <jsp:include page="footer.jsp" />
+	</div>
 
 </body>
 </html>

@@ -35,7 +35,7 @@ public class StudentDao {
 			ResultSet rs = pst.executeQuery();
 			
 			if(rs.next()) {
-				std.setId(rs.getString("id"));
+				std.setId(rs.getInt("id"));
 				std.setUsername(rs.getString("username"));
 				std.setName(rs.getString("name"));
 				std.setDept(rs.getString("dept"));
@@ -65,7 +65,7 @@ public class StudentDao {
 						rs.getString("id"),
 						rs.getString("email"),
 						rs.getString("dept"),
-						rs.getString("id"));
+						rs.getString("email"));
 				students.add(tile);
 			}
 			

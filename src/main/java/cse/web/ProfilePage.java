@@ -15,7 +15,7 @@ import cse.testmodels.Person;
 /**
  * Servlet implementation class ProfilePage
  */
-@WebServlet({ "/Profile", "/Teacher", "/Student" })
+@WebServlet({ "/Profile" })
 public class ProfilePage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

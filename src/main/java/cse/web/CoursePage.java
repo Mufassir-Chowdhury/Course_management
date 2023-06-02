@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cse.testdao.CourseDao;
+import cse.dao.CourseDao;
+import cse.model.CourseModel;
 import cse.testdao.PersonDao;
-import cse.testmodels.Course;
 import cse.testmodels.ListTile;
 
 /**
@@ -28,11 +28,10 @@ public class CoursePage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CourseDao dao = new CourseDao();
-		Course course = dao.getCourseDetails();
+		CourseModel course = dao.getCourse(request.getParameter("id"));
 		request.setAttribute("course", course);
 		
-		PersonDao dao2 = new PersonDao();
-		List<ListTile> personList = dao2.getStudents(); 
+		List<ListTile> personList = dao.getAllStudentOfACourse(course.getCourse_code()); 
 		request.setAttribute("list", personList);
 		request.setAttribute("request", false);
 		request.setAttribute("onClick", "./Student");

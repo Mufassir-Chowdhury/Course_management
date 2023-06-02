@@ -1,15 +1,15 @@
 package cse.model;
 
 public class AuthModel {
-	private String username;
+	private int id;
 	private String email;
 	private String password;
 	private String role;
-	public String getUsername() {
-		return username;
+	public int getId() {
+		return id;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getEmail() {
 		return email;
@@ -31,7 +31,7 @@ public class AuthModel {
 	}
 	@Override
 	public String toString() {
-		return "AuthModel [username=" + username + ", email=" + email + ", password=" + password + ", role=" + role
+		return "AuthModel [username=" + id + ", email=" + email + ", password=" + password + ", role=" + role
 				+ "]";
 	}
 	

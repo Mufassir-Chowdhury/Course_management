@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import cse.model.CourseModel;
 import cse.model.TeacherModel;
+import cse.testmodels.ListTile;
 
 
 public class TeacherDao {
@@ -42,7 +42,7 @@ public class TeacherDao {
 				tcr.setName(rs.getString("name"));
 				tcr.setCode(rs.getString("code"));			
 				tcr.setDept(rs.getString("dept"));
-				tcr.setDesignation(rs.getString("desgination"));
+				tcr.setDesignation(rs.getString("designation"));
 				tcr.setPhone(rs.getString("phone"));
 				tcr.setEmail(rs.getString("email"));
 			}
@@ -53,24 +53,40 @@ public class TeacherDao {
 		return tcr;
 	}
 	
-	public List<TeacherModel> getAllTeacher() {
+	public List<ListTile> getAllTeacher() {
 		String sql = "select * from teachers";
+		List<ListTile> teachers = new ArrayList<>();
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				teachers.add(new ListTile(
+							rs.getString("name"),
+							rs.getString("designation"),
+							rs.getString("email"),
+							rs.getString("dept"),
+							rs.getString("email")
+						));
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return teachers;
+	}
+	public List<TeacherModel> getAllTeacherCodes() {
+		String sql = "select code, id from teachers";
 		List<TeacherModel> teachers = new ArrayList<>();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				TeacherModel tcr = new TeacherModel();
-				tcr.setId(rs.getInt("id"));
-				tcr.setUsername(rs.getString("username"));
-				tcr.setName(rs.getString("name"));
-				tcr.setCode(rs.getString("code"));			
-				tcr.setDept(rs.getString("dept"));
-				tcr.setDesignation(rs.getString("desgination"));
-				tcr.setPhone(rs.getString("phone"));
-				tcr.setEmail(rs.getString("email"));
-				teachers.add(tcr);
+				TeacherModel model = new TeacherModel();
+				model.setId(rs.getInt("id"));
+				model.setCode(rs.getString("code"));
+				teachers.add(model);
 			}
 			
 		}catch(Exception e) {

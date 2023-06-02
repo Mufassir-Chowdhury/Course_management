@@ -15,7 +15,7 @@ pageEncoding="ISO-8859-1"%>
                 <img class="mx-auto h-12 w-auto" src="https://www.sust.edu/images/logo.png" alt="Shahjalal University of Science and Technology">
                 <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
               </div>
-              <form class="mt-8 space-y-6" action="Dashboard">
+              <form class="mt-8 space-y-6" action="Dashboard" method="post">
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">
                   <div>
@@ -29,6 +29,7 @@ pageEncoding="ISO-8859-1"%>
                 </div>
           
                 <div class="flex items-center justify-between">
+                  <!-- 
                   <div class="flex items-center">
                     <select name="role" id="role" class="rounded border-gray-300 text-indigo-600">
                         <option value="student">Student</option>
@@ -37,6 +38,9 @@ pageEncoding="ISO-8859-1"%>
                     </select>
                     <label for="role" class="ml-2 block text-sm text-gray-900">Role</label>
                   </div>
+                   -->
+                   <div>
+                   </div>
           
                   <div class="text-sm">
                     <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
@@ -53,6 +57,17 @@ pageEncoding="ISO-8859-1"%>
                     Sign in
                   </button>
                 </div>
+                <% 
+                	if(request.getAttribute("error") != null){
+	                	String error = (String) request.getAttribute("error");
+	            %>
+	                <div class="text-red-800">
+	                	<% out.print(error); %>
+	                </div>
+	            	
+	            <%
+                	}
+                %>
               </form>
             </div>
           </div>

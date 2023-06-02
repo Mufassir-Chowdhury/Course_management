@@ -1,7 +1,6 @@
 package cse.web;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,24 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cse.dao.TeacherDao;
-import cse.model.TeacherModel;
+import cse.dao.StudentDao;
+import cse.model.StudentModel;
+import cse.testdao.PersonDao;
+import cse.testmodels.Person;
 
 /**
- * Servlet implementation class AddCourseForm
+ * Servlet implementation class StudentProfile
  */
-@WebServlet("/AddCourseForm")
-public class AddCourseForm extends HttpServlet {
+@WebServlet("/Student")
+public class StudentProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		TeacherDao dao = new TeacherDao();
-		List<TeacherModel> list = dao.getAllTeacherCodes();
-		request.setAttribute("list", list);
-		RequestDispatcher view = request.getRequestDispatcher("courseForm.jsp");
+		StudentDao dao = new StudentDao();
+		StudentModel person = dao.getStudent(request.getParameter("id"));
+		request.setAttribute("person", person);
+		RequestDispatcher view = request.getRequestDispatcher("studentProfilePage.jsp");
 		view.forward(request, response);
 	}
 

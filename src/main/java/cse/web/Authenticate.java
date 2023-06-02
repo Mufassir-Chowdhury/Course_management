@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cse.dao.AuthDao;
 import cse.dao.StudentDao;
+import cse.model.AuthModel;
 import cse.model.StudentModel;
 import cse.service.LoginService;
-import cse.testdao.CourseDao;
+import cse.dao.CourseDao;
 import cse.testmodels.ListTile;
 
 /**
@@ -23,7 +25,8 @@ import cse.testmodels.ListTile;
 @WebServlet("/Dashboard")
 public class Authenticate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    String role;
+    int id;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,22 +39,17 @@ public class Authenticate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String role;
-		if(!LoginService.checkLogin(request)) {
-			role = request.getParameter("role");
-			response.addCookie(new Cookie("role", role));
-		} else {
-			role = LoginService.getRole(request);
-		}
-		if(role.toString().trim().equals("teacher")) {
+		response.addCookie(new Cookie("role", role));
+		response.addCookie(new Cookie("id", String.valueOf(id)));
+		if(role.equals("teacher")) {
 			CourseDao dao = new CourseDao();
-			List<ListTile> courseList = dao.getCourse();
+			List<ListTile> courseList = dao.getAllCourseOfATeacher(id);
 			request.setAttribute("list", courseList);
 			request.setAttribute("request", false);
 			request.setAttribute("onClick", "./Course");
 			RequestDispatcher view = request.getRequestDispatcher(role + "Dashboard.jsp");
 			view.forward(request, response);
-		} else if(role.toString().trim().equals("student")) {
+		} else if(role.equals("student")) {
 			
 			String email = (String) request.getParameter("email");
 			System.out.println(email);
@@ -60,7 +58,7 @@ public class Authenticate extends HttpServlet {
 			request.setAttribute("std", std);
 			
 			CourseDao dao = new CourseDao();
-			List<ListTile> courseList = dao.getCourse();
+			List<ListTile> courseList = dao.getAllCourseOfAStudent(id);
 			request.setAttribute("list", courseList);
 			request.setAttribute("request", false);
 			request.setAttribute("title", "Registered Course List");
@@ -83,7 +81,16 @@ public class Authenticate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		AuthDao dao = new AuthDao();
+		AuthModel model = dao.getAuth(request.getParameter("email"));
+		if(model.getRole() == null) {
+			request.setAttribute("error", "Wrong email or password");
+			RequestDispatcher view = request.getRequestDispatcher("login.jsp");
+			view.forward(request, response);
+		}
+		role = model.getRole();
+		id = model.getId();
+		System.out.println(role);
 		doGet(request, response);
 	}
 

@@ -8,6 +8,13 @@ public class CourseModel {
 	private String prereq;
 	private int semester;
 	private int year;
+	private String dept;
+	public String getDept() {
+		return dept;
+	}
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
 	public String getCourse_code() {
 		return course_code;
 	}

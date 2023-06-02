@@ -1,4 +1,4 @@
-<%@ page import="cse.testmodels.Person" %>
+<%@ page import="cse.model.TeacherModel" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
   </div>
   <div class="mt-2 border-t border-gray-100">
   	<%       	
-  		Person person = (Person) request.getAttribute("person");
+  		TeacherModel person = (TeacherModel) request.getAttribute("person");
 	 %>
     <dl class="divide-y divide-gray-100">
       <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
@@ -31,7 +31,7 @@
       </div>
       <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Department</dt>
-        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getDepartment()); %></dd>
+        <dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getDept()); %></dd>
       </div>
       	<% 
       		if(person.getCode() != null){
@@ -50,23 +50,8 @@
 				</div>
         <%
       		} 
-      		if(person.getSession() != null){
         %>
-      			<div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
-	      			<dt class="text-sm font-medium leading-6 text-gray-900">Session</dt>
-	      			<dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getSession()); %></dd>
-      			</div>
-      	<%
-      		}
-      		if(person.getCurrentSemester() != null){
-      	%>
-      			<div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
-	      			<dt class="text-sm font-medium leading-6 text-gray-900">Current Semester</dt>
-	      			<dd class="text-sm leading-6 text-gray-700 col-span-2 mt-0"><% out.print(person.getCurrentSemester()); %></dd>
-      			</div>
-        <%
-      		}
-      	%>
+      			
       
       <div class="px-4 py-2 grid grid-cols-5 gap-4 px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
@@ -80,9 +65,9 @@
     </dl>
   </div>
 </div>
-<div class="flex-none">
+	<div class="flex-none">
 	    <jsp:include page="footer.jsp" />
-</div>
+	</div>
 
 </body>
 </html>

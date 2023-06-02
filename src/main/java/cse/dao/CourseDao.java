@@ -9,6 +9,7 @@ import java.util.List;
 
 import cse.model.CourseModel;
 import cse.model.StudentModel;
+import cse.testmodels.ListTile;
 
 
 
@@ -40,11 +41,12 @@ public class CourseDao {
 				if(rs.next()) {
 					crs.setCourse_code(rs.getString("course_code"));
 					crs.setCourse_name(rs.getString("course_name"));
-					crs.setCredit(rs.getString("credit"));
+					crs.setCredit(rs.getString("credits"));
 					crs.setInstructor_id(rs.getInt("instructor_id"));
 					crs.setPrereq(rs.getString("prereq"));
 					crs.setSemester(rs.getInt("semester"));
 					crs.setYear(rs.getInt("year"));
+					crs.setDept(rs.getString("department"));
 				}
 			}catch(Exception e) {
 				System.out.println(e);
@@ -53,23 +55,21 @@ public class CourseDao {
 	}
 	
 	
-	public List<CourseModel> getAllCourse() {
+	public List<ListTile> getAllCourse() {
 		String sql = "select * from courses";
-		List<CourseModel> courses = new ArrayList<>();
+		List<ListTile> courses = new ArrayList<>();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				CourseModel crs = new CourseModel();
-				crs.setCourse_code(rs.getString("course_code"));
-				crs.setCourse_name(rs.getString("course_name"));
-				crs.setCredit(rs.getString("credit"));
-				crs.setInstructor_id(rs.getInt("instructor"));
-				crs.setPrereq(rs.getString("prereq"));
-				crs.setSemester(rs.getInt("semester"));
-				crs.setYear(rs.getInt("year"));
-				courses.add(crs);
+				courses.add(new ListTile(
+							rs.getString("course_name"),
+							rs.getString("course_code"),
+							"Credits: " + rs.getString("credits"),
+							rs.getInt("semester") + " - " + rs.getInt("year"),
+							rs.getString("course_code")
+						));
 			}
 			
 		}catch(Exception e) {
@@ -78,27 +78,23 @@ public class CourseDao {
 		return courses;
 	}
 	
-	public List<StudentModel> getAllStudentOfACourse(String course_code) {
-		String sql = "select * from students join takes using(id) where takes.course_code = '?'";
+	public List<ListTile> getAllStudentOfACourse(String course_code) {
+		String sql = "select * from students join takes using(id) where takes.course_code = ?";
 		
-		List<StudentModel> students = new ArrayList<>();
+		List<ListTile> students = new ArrayList<>();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, course_code);
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				StudentModel std = new StudentModel();
-				std.setId(rs.getString("id"));
-				std.setUsername(rs.getString("username"));
-				std.setName(rs.getString("name"));
-				std.setDept(rs.getString("dept"));
-				std.setSession(rs.getString("session"));
-				std.setPhone(rs.getString("phone"));
-				std.setEmail(rs.getString("email"));
-				//String temp = rs.getString("id");
-				//String temp1 = rs.getString("course_code");
-				students.add(std);
+				students.add(new ListTile(
+							rs.getString("name"),
+							String.valueOf(rs.getInt("id")),
+							rs.getString("email"),
+							rs.getString("dept"),
+							rs.getString("email")
+						));
 			}
 			
 		}catch(Exception e) {
@@ -108,26 +104,22 @@ public class CourseDao {
 	}
 	
 	
-	public List<CourseModel> getAllCourseOfATeacher(int id) {
-		String sql = "select * from courses as c, teaches as tc where c.instructor_id = tc.id and tc.id = '?'";
-		List<CourseModel> courses = new ArrayList<>();
+	public List<ListTile> getAllCourseOfATeacher(int id) {
+		String sql = "select * from courses as c, teaches as tc where c.instructor_id = tc.id and tc.id = ?";
+		List<ListTile> courses = new ArrayList<>();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				CourseModel crs = new CourseModel();
-				crs.setCourse_code(rs.getString("course_code"));
-				crs.setCourse_name(rs.getString("course_name"));
-				crs.setCredit(rs.getString("credit"));
-				crs.setInstructor_id(rs.getInt("instructor_id"));
-				crs.setPrereq(rs.getString("prereq"));
-				crs.setSemester(rs.getInt("semester"));
-				crs.setYear(rs.getInt("year"));
-//				String temp = rs.getString("id");
-//				String temp = rs.getString("course_code");
-				courses.add(crs);
+				courses.add(new ListTile(
+							rs.getString("course_name"),
+							rs.getString("course_code"),
+							"Credits: " + rs.getString("credits"),
+							rs.getInt("semester") + " - " + rs.getInt("year"),
+							rs.getString("course_code")
+						));
 			}
 			
 		}catch(Exception e) {
@@ -136,24 +128,22 @@ public class CourseDao {
 		return courses;
 	}
 	
-	public List<CourseModel> getAllCourseOfAStudent(String id) {
-		String sql = "select * from courses join takes using(course_code) join students using (id) where students.id = '?'";
-		List<CourseModel> courses = new ArrayList<>();
+	public List<ListTile> getAllCourseOfAStudent(int id) {
+		String sql = "select * from courses join takes using(course_code) join students using (id) where students.id = ?";
+		List<ListTile> courses = new ArrayList<>();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, id);
+			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				CourseModel crs = new CourseModel();
-				crs.setCourse_code(rs.getString("course_code"));
-				crs.setCourse_name(rs.getString("course_name"));
-				crs.setCredit(rs.getString("credit"));
-				crs.setInstructor_id(rs.getInt("instructor_id"));
-				crs.setPrereq(rs.getString("prereq"));
-				crs.setSemester(rs.getInt("semester"));
-				crs.setYear(rs.getInt("year"));
-				courses.add(crs);
+				courses.add(new ListTile(
+							rs.getString("course_name"),
+							rs.getString("course_code"),
+							"Credits: " + rs.getString("credits"),
+							rs.getInt("semester") + " - " + rs.getInt("year"),
+							rs.getString("course_code")
+						));
 			}
 			
 		}catch(Exception e) {
@@ -192,8 +182,8 @@ public class CourseDao {
 	
 	public void addCourse(CourseModel course){
 		String sql = "insert into courses "
-				   + "(course_code, course_name, credits, instructor_id, prereq, semester, year) values "
-				   + "(?,?,?,?,?,?,?)";
+				   + "(course_code, course_name, credits, instructor_id, prereq, semester, department, year) values "
+				   + "(?,?,?,?,?,?,?, ?)";
 		String sql2 = "insert into teaches(id, course_code) values (?, ?)";
 		
 		try {
@@ -204,7 +194,8 @@ public class CourseDao {
 			pst.setInt(4, course.getInstructor_id());
 			pst.setString(5, course.getPrereq());
 			pst.setInt(6, course.getSemester());
-			pst.setInt(7, course.getYear());
+			pst.setString(7, course.getDept());
+			pst.setInt(8, course.getYear());
 			pst.execute();
 			
 			PreparedStatement pst2 = con.prepareStatement(sql2);

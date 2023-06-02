@@ -33,7 +33,7 @@ public class AuthDao {
 			ResultSet rs = pst.executeQuery();
 			
 			if(rs.next()) {
-				auth.setUsername(rs.getString("username"));
+				auth.setId(rs.getInt("id"));
 				auth.setEmail(rs.getString("email"));
 				auth.setPassword(rs.getString("password"));
 				auth.setRole(rs.getString("role"));
