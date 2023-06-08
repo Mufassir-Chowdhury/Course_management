@@ -16,6 +16,9 @@
 	<div class="pt-8 px-16 grow">
 		<div class="px-4 sm:px-0 w-full justify-between flex">
 			<h3 class="text-base font-semibold leading-7 text-gray-900">Course List</h3>
+			<a href="./RegisterCourseForm">
+				<button class="p-2 bg-white shadow-indigo-500/40 shadow-lg">Course Registration</button>
+			</a>
 		</div>
 		<jsp:include page="listShow.jsp" />
 

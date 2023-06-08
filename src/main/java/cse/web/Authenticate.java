@@ -57,7 +57,7 @@ public class Authenticate extends HttpServlet {
 			request.setAttribute("std", std);
 			
 			CourseDao dao = new CourseDao();
-			List<ListTile> courseList = dao.getAllCourseOfAStudent(id);
+			List<ListTile> courseList = dao.getAllCourseOfAStudent(String.valueOf(id));
 			request.setAttribute("list", courseList);
 			request.setAttribute("request", false);
 			request.setAttribute("title", "Registered Course List");

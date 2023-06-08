@@ -128,12 +128,12 @@ public class CourseDao {
 		return courses;
 	}
 	
-	public List<ListTile> getAllCourseOfAStudent(int id) {
+	public List<ListTile> getAllCourseOfAStudent(String id) {
 		String sql = "select * from courses join takes using(course_code) join students using (id) where students.id = ?";
 		List<ListTile> courses = new ArrayList<>();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, id);
+			pst.setString(1, id);
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
@@ -154,18 +154,21 @@ public class CourseDao {
 	
 	
 	public List<CourseModel> getAllCoursesNotTakenByAStudent(String id) {
-		String sql = "select * from courses join takes using(course_code) where takes.id != '?'";
+		String sql = "select * from courses where department = (select dept from students where id = ?)\r\n"
+				+ "and course_code NOT IN (select course_code from courses join takes using(course_code) where takes.id=?);";
+//		String sql = "select * from courses join takes using(course_code) where takes.id != ?";
 		List<CourseModel> courses = new ArrayList<>();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, id);
+			pst.setString(2, id);
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
 				CourseModel crs = new CourseModel();
 				crs.setCourse_code(rs.getString("course_code"));
 				crs.setCourse_name(rs.getString("course_name"));
-				crs.setCredit(rs.getString("credit"));
+				crs.setCredit(rs.getString("credits"));
 				crs.setInstructor_id(rs.getInt("instructor_id"));
 				crs.setPrereq(rs.getString("prereq"));
 				crs.setSemester(rs.getInt("semester"));
