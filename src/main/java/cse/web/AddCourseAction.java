@@ -11,25 +11,21 @@ import cse.dao.CourseDao;
 import cse.model.CourseModel;
 
 /**
- * Servlet implementation class AddCourseAction
- */
+    The AddCourseAction servlet class handles the action of adding a new course.
+    It extends the HttpServlet class to handle HTTP requests.
+*/
 @WebServlet("/AddCourseAction")
 public class AddCourseAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddCourseAction() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	
-
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+		Handles the HTTP POST request for adding a new course.
+		It retrieves the course details from the request parameters and adds the course to the database using the CourseDao.
+		@param request the HttpServletRequest object containing the request parameters
+		@param response the HttpServletResponse object for sending the response
+		@throws ServletException if a servlet-specific error occurs
+		@throws IOException if an I/O error occurs
+    */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CourseDao dao = new CourseDao();
 		CourseModel model = new CourseModel();
@@ -42,6 +38,9 @@ public class AddCourseAction extends HttpServlet {
 		model.setSemester(Integer.valueOf(request.getParameter("semester")));
 		model.setYear(Integer.valueOf(request.getParameter("year")));
 		dao.addCourse(model);
+		
+		response.sendRedirect("adminDashboard.jsp");
+
 	}
 
 }

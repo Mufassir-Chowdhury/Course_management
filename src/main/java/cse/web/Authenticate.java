@@ -20,24 +20,23 @@ import cse.dao.CourseDao;
 import cse.testmodels.ListTile;
 
 /**
- * Servlet implementation class HelloJSP
- */
+    The Authenticate servlet class handles the authentication and dashboard functionality.
+    It extends the HttpServlet class to handle HTTP requests.
+*/
 @WebServlet("/Dashboard")
 public class Authenticate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     String role;
     int id;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Authenticate() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+		Handles the HTTP GET request for the dashboard functionality.
+		It sets the role and id cookies, retrieves and displays the dashboard based on the user's role.
+		@param request the HttpServletRequest object containing the request parameters
+		@param response the HttpServletResponse object for sending the response
+		@throws ServletException if a servlet-specific error occurs
+		@throws IOException if an I/O error occurs
+    */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.addCookie(new Cookie("role", role));
 		response.addCookie(new Cookie("id", String.valueOf(id)));
@@ -68,7 +67,6 @@ public class Authenticate extends HttpServlet {
 
 			RequestDispatcher view = request.getRequestDispatcher("studentDashboard.jsp");
 
-//			RequestDispatcher view = request.getRequestDispatcher("studentDashboard.jsp");
 			view.forward(request, response);
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher(role + "Dashboard.jsp");
@@ -78,8 +76,13 @@ public class Authenticate extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+		Handles the HTTP POST request for the authentication functionality.
+		It verifies the user's credentials, sets the role and id variables, and delegates the request handling to the doGet method.
+		@param request the HttpServletRequest object containing the request parameters
+		@param response the HttpServletResponse object for sending the response
+		@throws ServletException if a servlet-specific error occurs
+		@throws IOException if an I/O error occurs
+    */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AuthDao dao = new AuthDao();
 		AuthModel model = dao.getAuth(request.getParameter("email"));
@@ -90,7 +93,6 @@ public class Authenticate extends HttpServlet {
 		}
 		role = model.getRole();
 		id = model.getId();
-		System.out.println(role);
 		doGet(request, response);
 	}
 

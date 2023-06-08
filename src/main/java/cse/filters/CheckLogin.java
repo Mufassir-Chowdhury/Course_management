@@ -17,8 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import cse.service.LoginService;
 
 /**
- * Servlet Filter implementation class CheckLogin
- */
+    CheckLogin Filter to ensure user authentication.
+    This filter intercepts requests to specific URLs and servlets and checks if the user is logged in.
+    If the user is not logged in, they are redirected to the homepage.
+*/
+
 @WebFilter(
 		dispatcherTypes = {
 				DispatcherType.REQUEST, 
@@ -47,28 +50,17 @@ import cse.service.LoginService;
 				"ApproveStudentController"
 		})
 public class CheckLogin extends HttpFilter implements Filter {
-       
     /**
-     * @see HttpFilter#HttpFilter()
-     */
-    public CheckLogin() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
+		Performs the filtering operation to check if the user is logged in.
+		If the user is not logged in, they are redirected to the homepage.
+		@param request the servlet request
+		@param response the servlet response
+		@param chain the filter chain
+		@throws IOException if an I/O error occurs during the filter process
+		@throws ServletException if a servlet error occurs during the filter process
+    */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
+
 
 		// pass the request along the filter chain
 		if(!LoginService.checkLogin((HttpServletRequest) request)) {
@@ -77,13 +69,6 @@ public class CheckLogin extends HttpFilter implements Filter {
 		} else {
 			chain.doFilter(request, response);			
 		}
-	}
-
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }

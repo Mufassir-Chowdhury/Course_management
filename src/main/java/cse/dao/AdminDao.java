@@ -8,6 +8,17 @@ import java.sql.ResultSet;
 import cse.model.AdminModel;
 
 
+/**
+    This code represents a DAO (Data Access Object) class named AdminDao.
+    It is responsible for interacting with the database to perform CRUD (Create, Read, Update, Delete) operations
+    related to the 'admins' table in the 'course_management' database.
+    The constructor establishes a connection to the MySQL database using JDBC (Java Database Connectivity).
+    It specifies the URL, username, and password required to connect to the database.
+    If the connection is successful, it prints the connection object to the console.
+    The getAdmin() method retrieves an AdminModel object from the database based on the provided email.
+    It prepares a SQL query using a PreparedStatement, sets the email parameter, and executes the query.
+    If a matching record is found in the result set, the method maps the data to an AdminModel object and returns it.
+*/
 public class AdminDao {
 	private Connection con;
 	public AdminDao() {
