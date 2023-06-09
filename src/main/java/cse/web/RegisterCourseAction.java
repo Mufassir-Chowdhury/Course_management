@@ -39,10 +39,11 @@ public class RegisterCourseAction extends HttpServlet {
 				
 			}
 		}
-
-		RequestDispatcher view = request.getRequestDispatcher("registerCourseForm.jsp");
-
-		view.forward(request, response);
+//
+//		RequestDispatcher view = request.getRequestDispatcher("studentDashboard.jsp");
+//		response.sendRezdirect("login.jsp");
+		response.sendRedirect("./Dashboard");
+//		view.forward(request, response);
 	}
 
 }

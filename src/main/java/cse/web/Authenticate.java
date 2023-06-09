@@ -38,9 +38,9 @@ public class Authenticate extends HttpServlet {
 		@throws IOException if an I/O error occurs
     */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.addCookie(new Cookie("role", role));
-		response.addCookie(new Cookie("id", String.valueOf(id)));
-		response.addCookie(new Cookie("email", request.getParameter("email")));
+//		response.addCookie(new Cookie("role", role));
+//		response.addCookie(new Cookie("id", String.valueOf(id)));
+//		response.addCookie(new Cookie("email", request.getParameter("email")));
 		if(role.equals("teacher")) {
 			CourseDao dao = new CourseDao();
 			List<ListTile> courseList = dao.getAllCourseOfATeacher(id);
@@ -85,9 +85,6 @@ public class Authenticate extends HttpServlet {
 		@throws IOException if an I/O error occurs
     */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.addCookie(new Cookie("role", role));
-		response.addCookie(new Cookie("id", String.valueOf(id)));
-		response.addCookie(new Cookie("email", request.getParameter("email")));
 		AuthDao dao = new AuthDao();
 		AuthModel model = dao.getAuth(request.getParameter("email"));
 		if(model.getRole() == null) {
@@ -97,6 +94,11 @@ public class Authenticate extends HttpServlet {
 		}
 		role = model.getRole();
 		id = model.getId();
+		
+		response.addCookie(new Cookie("role", role));
+		response.addCookie(new Cookie("id", String.valueOf(id)));
+		response.addCookie(new Cookie("email", request.getParameter("email")));
+
 		doGet(request, response);
 	}
 

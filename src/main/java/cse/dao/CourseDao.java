@@ -155,13 +155,16 @@ public class CourseDao {
 	
 	public List<CourseModel> getAllCoursesNotTakenByAStudent(String id) {
 		String sql = "select * from courses where department = (select dept from students where id = ?)\r\n"
-				+ "and course_code NOT IN (select course_code from courses join takes using(course_code) where takes.id=?);";
+				+ "and year = 2023\r\n"
+				+ "and semester = (select currentSemester from students where id = ?)\r\n"
+				+ "and course_code NOT IN (select course_code from courses join takes using(course_code) where takes.id=?);\r\n";
 //		String sql = "select * from courses join takes using(course_code) where takes.id != ?";
 		List<CourseModel> courses = new ArrayList<>();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, id);
 			pst.setString(2, id);
+			pst.setString(3, id);
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {

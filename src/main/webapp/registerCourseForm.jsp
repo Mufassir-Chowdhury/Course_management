@@ -29,22 +29,23 @@
 						<h3 class="text-base font-semibold leading-7 text-gray-900">Course
 							Registration Form</h3>
 					</div>
+					<div>
+						Year - 2023
+					</div>
 
 					<div class="border-b border-gray-900/10 pb-12">
 						<div class="mt-10 grid gap-x-6 gap-y-8 grid-cols-12">
-
+							<!-- 
 							<div class="sm:col-span-7">
-								<label for="usn"
+								<label for="year"
 									class="block text-sm font-medium leading-6 text-gray-900">USN</label>
 								<div class="mt-2">
-									<select id="usn" name="usn"
+									<select id="year" name="year"
 										class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-										<option>2019-1</option>
-										<option>2019-2</option>
-										<option>2020-1</option>
-										<option>2020-2</option>
-										<option>2020-1</option>
-										<option>2020-2</option>
+										<option value="2018">2018</option>
+										<option value="2019">2019</option>
+										<option value="2020">2020</option>
+										<option value="2021">2021</option>
 									</select>
 								</div>
 							</div>
@@ -54,17 +55,18 @@
 								<div class="mt-2">
 									<select id="semester" name="semester"
 										class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-										<option>1-1</option>
-										<option>1-2</option>
-										<option>2-1</option>
-										<option>2-2</option>
-										<option>3-1</option>
-										<option>3-2</option>
-										<option>4-1</option>
-										<option>4-2</option>
+										<option value="1">1-1</option>
+										<option value="2">1-2</option>
+										<option value="3">2-1</option>
+										<option value="4">2-2</option>
+										<option value="1">3-1</option>
+										<option value="1">3-2</option>
+										<option value="1">4-1</option>
+										<option value="1">4-2</option>
 									</select>
 								</div>
 							</div>
+							-->
 							<fieldset class="sm:col-span-6">
 								<legend class="text-sm font-semibold leading-6 text-gray-900">Courses</legend>
 								<div class="mt-6 space-y-6">

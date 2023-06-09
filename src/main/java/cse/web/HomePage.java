@@ -27,6 +27,7 @@ public class HomePage extends HttpServlet {
 		@throws IOException if an I/O error occurs
     */ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
 		response.addCookie(new Cookie("role", null));
 		response.sendRedirect("login.jsp");
 	}

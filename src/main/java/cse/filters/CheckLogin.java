@@ -61,6 +61,7 @@ public class CheckLogin extends HttpFilter implements Filter {
     */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
+		((HttpServletResponse) response).setHeader("Cache-control", "no-cache, no-store, must-revalidate");
 
 		// pass the request along the filter chain
 		if(!LoginService.checkLogin((HttpServletRequest) request)) {
