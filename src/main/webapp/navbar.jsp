@@ -2,7 +2,25 @@
 pageEncoding="ISO-8859-1"%>
 
 <!doctype html>
-
+<%
+	Cookie[] cookies = request.getCookies();
+	String role = "";
+	String email = "";
+	for(Cookie i: cookies) {
+		if(i.getName().equals("role") && i.getValue() != "") {
+			role = i.getValue();
+		} else if(i.getName().equals("email") && i.getValue() != "") {
+			email = i.getValue();
+		}
+	}
+	if(role.equals("student")){
+		role = "Student";
+	} else if(role.equals("teacher")){
+		role = "Teacher";
+	} else{
+		role = "Admin";
+	}
+%>
 <html>
 	<head>
 	  <meta charset="UTF-8">
@@ -19,7 +37,7 @@ pageEncoding="ISO-8859-1"%>
 		        <div class="hidden sm:ml-6 sm:block">
 		          <div class="flex space-x-4">
 		            <a href="./Dashboard" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Dashboard</a>
-		            <a href="./Profile" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Profile</a>
+		            <a href=<% out.print("./" + role + "?id=" + email); %> class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Profile</a>
 		            <a href="./" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Logout</a>
 		          </div>
 		        </div>
